@@ -1,170 +1,182 @@
-from PyQt5.QtGui import QIcon, QPixmap
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton, QLineEdit, QDialog, QGridLayout, QLabel, \
-    QMessageBox, QRadioButton
 import sys
-import sympy as sp
 
-class Calculator(QWidget):
+import sympy
+from PyQt5 import uic
+from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox
+import sympy as sp
+import validators
+
+
+class MainWindow(QMainWindow):
+
     def __init__(self):
         super().__init__()
-        self.initUI()
+        uic.loadUi("GUI_calculadora.ui", self)
+        # Paneles Metodos
+        self.puntofijoButton.clicked.connect(self.puntoFijo_Panel)
+        self.biseccionButton.clicked.connect(self.biseccion_Panel)
+        self.newtonButton.clicked.connect(self.newton_Panel)
+        self.secanteButton.clicked.connect(self.secante_Panel)
+        self.difeButton.clicked.connect(self.diferencias_Panel)
+        self.jacobiButton.clicked.connect(self.jacobi_Panel)
+        self.gaussButton.clicked.connect(self.gauss_Panel)
+        self.trapecioButton.clicked.connect(self.trapecio_Panel)
+        self.simpsonButton.clicked.connect(self.simpson_Panel)
+        # Panel calculadora boton
+        self.funcionButton.clicked.connect(self.calculator)
+        self.funcionButton2.clicked.connect(self.calculator)
+        # Panel inicial
+        self.puntoFijo_Panel()
 
-    def initUI(self):
-        self.setWindowTitle('Calculadora')
-        self.setWindowIcon(QIcon('python2.ico'))
-        self.setGeometry(100, 100, 400, 400)
+    def validar_campos_no_vacios(self, *campos):
+        for campo in campos:
+            if campo.text().strip() == "":
+                QMessageBox.critical(self, "Error", "campos vacios")
+                return False
+        return True
 
-        self.layout = QVBoxLayout()
+    def validar_funcion(self, entrada):
+        try:
+            x = sp.symbols('x')
+            expr = sp.sympify(entrada)
+            if isinstance(expr, sp.FunctionClass) or isinstance(expr,
+                                                                sp.Basic):  # Verifica si es una función o una expresión básica
+                return True
+            else:
+                return False
+        except sp.SympifyError:
+            return False
 
-        # Agregar imagen de la calculadora
-        pixmap = QPixmap("calculator.png")
-        calculator_image = QLabel()
-        calculator_image.setPixmap(pixmap)
-        self.layout.addWidget(calculator_image)
+    def vaidar_numero(self, string):
+        try:
+            float(string)
+            return True
+        except (TypeError, ValueError):
+            return False
 
-        # Agregar etiqueta
-        label = QLabel('Seleccione un método: ')
-        self.layout.addWidget(label)
+    # -------------------------JUAN DIEGO-------------------------------
 
-        # Lista vertical de métodos
-        self.method_radio_buttons = []
-        methods = ['Punto fijo', 'Bisección', 'Newton-Raphson', 'Secante', 'Diferencias divididas', 'Jacobi',
-                   'Gauss-Seidel', 'Trapecio', 'Simpson']
+    def puntoFijo_Panel(self):  # Abrir panel punto fjo
+        print('punto fijo')
+        self.stackedWidget.setCurrentIndex(0)
+        self.calcularButton.clicked.connect(self.validar_puntofijo)
 
-        for method in methods:
-            radio_button = QRadioButton(method)
-            self.method_radio_buttons.append(radio_button)
-            self.layout.addWidget(radio_button)
+    def validar_puntofijo(self):
+        input_fx = self.fx_lineEdit.text()
+        input_gx = self.gx_lineEdit.text()
+        input_xo = self.xo_lineEdit.text()
+        input_tol = self.tol_lineEdit.text()
 
-        # Botón de cálculo
-        self.calculate_button = QPushButton('Calcular')
-        self.calculate_button.clicked.connect(self.calculate)
-        self.layout.addWidget(self.calculate_button)
-
-        self.setLayout(self.layout)
-
-    def calculate(self):
-        selected_method = None
-
-        for i, radio_button in enumerate(self.method_radio_buttons):
-            if radio_button.isChecked():
-                selected_method = i
-                break
-
-        if selected_method is None:
-            QMessageBox.warning(self, 'Error', 'Por favor, seleccione un método.')
+        # Validar campos no vacíos
+        if not self.validar_campos_no_vacios(self.fx_lineEdit, self.gx_lineEdit, self.xo_lineEdit, self.tol_lineEdit):
+            print("Algunos campos están vacíos.")
             return
 
-        # Mostrar un mensaje con el método seleccionado
-        selected_method_name = self.method_radio_buttons[selected_method].text()
-        QMessageBox.information(self, 'Método seleccionado', f'Se seleccionó el método: {selected_method_name}')
+        # Validar funciones
+        # fx
+        if not self.validar_funcion(input_fx):
+            print('fx no es funncion')
+            self.fx_lineEdit.clear()
+            return
+        # gx
+        if not self.validar_funcion(input_gx):
+            print('gx no es funncion')
+            self.gx_lineEdit.clear()
+            return
 
-        # Método punto fijo
-        if selected_method == 0:
-            print('hola')
-            self.point_fix_dialog = PointFixDialog()
-            self.point_fix_dialog.exec_()
-            user_function = self.point_fix_dialog.get_function()
+        # validar numeros
+        if not self.vaidar_numero(input_xo):
+            print('Debe ser un numero decimal')
+            self.xo_lineEdit.clear()
+            return
+        if not self.vaidar_numero(input_tol):
+            print('Debe ser un numero decimal')
+            self.tol_lineEdit.clear()
+            return
 
-class PointFixDialog(QDialog):
-    def __init__(self):
-        super().__init__()
-        self.initUI()
+        # Si todos los campos están completos y las funciones son válidas
+        print("Todos los campos están completos y las funciones son válidas.")
+        self.puntoFijo(self, input_fx, input_xo, input_tol)
 
-    def initUI(self):
-        self.setWindowTitle('Ingresar función f(x)')
-        self.setGeometry(200, 200, 400, 400)
+    def puntoFijo(self, fun_fx, fun_gx, Xo, tol):
+        x = sp.symbols('x')
+        g = fun_gx
+        g = sp.lambdify(x, g)
+        x0 = float(Xo)
+        tol = float(tol)
+        n = 15  # numero de iteraciones
+        for i in range(n):
+            x = g(x0)
+            error = abs((x - x0) / x)
+            if error < tol:
+                result = round(x, 5)
+                # Mostrar resultado
+                self.result_Label.setText(f'Solucion: {str(result)}')
+                break
+            x0 = x
 
-        self.layout = QVBoxLayout()
+        # Mostrar grafica
+        self.graf_button.clicked.connect(self.mostrar_grafica)
 
-        # Etiqueta
-        label = QLabel('Ingrese f(x): ')
-        self.layout.addWidget(label)
+        # Mostrar tabla
+        self.tab_button.clicked.connect(self.mostrar_tabla)
 
-        # Cuadro de texto
-        self.function_input = QLineEdit()
-        self.layout.addWidget(self.function_input)
+    def biseccion_Panel(self):
+        print('biseccion')
+        self.stackedWidget.setCurrentIndex(1)
 
-        # Cuadro de botones principales de la calculadora
-        button_grid = QGridLayout()
-        buttons = [
-            'x', 'x^2', 'x^n', 'sqrt(x)',  # Usamos 'sqrt(x)' para la raíz cuadrada
-            'sin', 'cos', 'π', 'e',
-            'ln', '(', ')', '+',
-            '-', '*', 'Derivada'  # Botón para calcular la derivada
-        ]
+    def newton_Panel(self):
+        print('newton')
+        self.stackedWidget.setCurrentIndex(2)
 
-        row, col = 0, 0
+    # -------------------------LADY-------------------------------
+    def secante_Panel(self):
+        print('secante')
+        self.stackedWidget.setCurrentIndex(3)
 
-        for button_text in buttons:
-            button = QPushButton(button_text)
-            if button_text == '=':
-                button.clicked.connect(self.calculate_function)
-            elif button_text == 'Derivada':
-                button.clicked.connect(self.calculate_derivative)
-            else:
-                button.clicked.connect(lambda checked, text=button_text: self.insert_text(text))
-            button_grid.addWidget(button, row, col)
-            col += 1
-            if col > 3:
-                col = 0
-                row += 1
+    def diferencias_Panel(self):
+        print('diferencias')
+        self.stackedWidget.setCurrentIndex(4)
 
-        # Botón para mostrar la función ingresada
-        self.show_function_button = QPushButton('Mostrar Función')
-        self.show_function_button.clicked.connect(self.show_function)
-        button_grid.addWidget(self.show_function_button, row, col, 1, 2)  # Coloca el botón en la última fila
+    def jacobi_Panel(self):
+        print('jacobi')
+        self.stackedWidget.setCurrentIndex(5)
 
-        self.layout.addLayout(button_grid)
+    # -------------------------JIMENA-------------------------------
+    def gauss_Panel(self):
+        print('gauss')
+        self.stackedWidget.setCurrentIndex(6)
 
-        self.setLayout(self.layout)
+    def trapecio_Panel(self):
+        print('trapecio')
+        self.stackedWidget.setCurrentIndex(7)
 
-    def insert_text(self, text):
-        current_text = self.function_input.text()
-        self.function_input.setText(current_text + text)
+    def simpson_Panel(self):
+        print('simpson')
+        self.stackedWidget.setCurrentIndex(8)
 
-    def calculate_function(self):
-        function_text = self.function_input.text()
+    # ---------------------------------------------------------------
 
-        try:
-            x = sp.symbols('x')
-            f_x = sp.sympify(function_text)
+    # Falta  metodo para ingresar la funcion por calculadora
+    def calculator(self):
+        print('calculator')
+        self.stackedWidget.setCurrentIndex(9)
+        # Boton confirmar
+        self.next_button.clicked.connect(self.puntoFijo_Panel)
 
-            # Calcula la integral de f(x)
-            integral = sp.integrate(f_x, x)
+    # Falta para mostrar la grafica de la funcion
+    def mostrar_grafica(self):
+        self.stackedWidget.setCurrentIndex(10)
+        print('mostrar grafica')
 
-            # Muestra el resultado en un cuadro de mensaje
-            QMessageBox.information(self, 'Resultado', f'Integral de f(x): {integral}')
-
-        except Exception as e:
-            QMessageBox.warning(self, 'Error', f'Error al calcular la integral: {str(e)}')
-
-    def calculate_derivative(self):
-        function_text = self.function_input.text()
-
-        try:
-            x = sp.symbols('x')
-            f_x = sp.sympify(function_text)
-
-            # Calcula la derivada de f(x)
-            derivative = sp.diff(f_x, x)
-
-            # Muestra el resultado en un cuadro de mensaje
-            QMessageBox.information(self, 'Resultado', f'Derivada de f(x): {derivative}')
-
-        except Exception as e:
-            QMessageBox.warning(self, 'Error', f'Error al calcular la derivada: {str(e)}')
-
-    def get_function(self):
-        return self.function_input.text()
-
-    def show_function(self):
-        user_function = self.function_input.text()
-        QMessageBox.information(self, 'Función Ingresada', f'f(x) = {user_function}')
+    # Falta para mostrar la tabla con i,x,error
+    def mostrar_tabla(self):
+        self.stackedWidget.setCurrentIndex(11)
+        print('mostrar tabla')
 
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    calc = Calculator()
-    calc.show()
+    Calculadora = MainWindow()
+    Calculadora.show()
     sys.exit(app.exec_())
