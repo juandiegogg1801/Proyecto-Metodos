@@ -2,16 +2,23 @@ import sys
 
 import sympy
 from PyQt5 import uic
-from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QTableWidgetItem
+from PyQt5.QtGui import QPen
+from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QTableWidgetItem, QGraphicsView, QGraphicsScene
 import sympy as sp
 import validators
+import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_template import FigureCanvas
+from matplotlib.figure import Figure
 from tabulate import tabulate
+from PyQt5.QtCore import Qt
 
 class MainWindow(QMainWindow):
 
     def __init__(self):
         super().__init__()
         self.datos = []
+        self.f = None
         uic.loadUi("GUI_calculadora.ui", self)
         # Paneles Metodos
         self.puntofijoButton.clicked.connect(self.puntoFijo_Panel)
@@ -23,12 +30,15 @@ class MainWindow(QMainWindow):
         self.gaussButton.clicked.connect(self.gauss_Panel)
         self.trapecioButton.clicked.connect(self.trapecio_Panel)
         self.simpsonButton.clicked.connect(self.simpson_Panel)
-        # Panel calculadora boton
+        # Botones calculadora
         self.funcionButton.clicked.connect(self.calculator)
         self.funcionButton2.clicked.connect(self.calculator)
+        self.funcionButton3.clicked.connect(self.calculator)
+        #Bloquear botones ver grafica
+        self.graf_button.setEnabled(False)
+        self.bis_grafica.setEnabled(False)
         # Panel inicial
         self.puntoFijo_Panel()
-
     def validar_campos_no_vacios(self, *campos):
         for campo in campos:
             if campo.text().strip() == "":
@@ -128,16 +138,151 @@ class MainWindow(QMainWindow):
         #self.tab_button.clicked.connect(self.mostrar_tabla)
 
         # Mostrar grafica
+        #Desbloquear boton mostrar grafica hasta que se hayan mostrado los valores
+        self.graf_button.setEnabled(True)
+        self.calcularButton.setEnabled(False)
+        self.f = f
         self.graf_button.clicked.connect(self.mostrar_grafica)
 
     def biseccion_Panel(self):
         print('biseccion')
         self.stackedWidget.setCurrentIndex(1)
+        self.bis_calcular.clicked.connect(self.validar_biseccion)
+
+    def validar_biseccion(self):
+        input_fx = self.bis_fx.text()
+        input_a = self.bis_a.text()
+        input_b = self.bis_b.text()
+        input_tol = self.bis_tol.text()
+
+        # Validar campos no vacíos
+        if not self.validar_campos_no_vacios(self.bis_fx, self.bis_a, self.bis_b, self.bis_tol):
+            print("Algunos campos están vacíos.")
+            return
+        # Validar funciones
+        # fx
+        if not self.validar_funcion(input_fx):
+            print('fx no es funncion')
+            self.bis_fx.clear()
+            return
+
+        # validar numeros
+        if not self.vaidar_numero(input_a):
+            print('Debe ser un numero decimal')
+            self.bis_a.clear()
+            return
+        if not self.vaidar_numero(input_b):
+            print('Debe ser un numero decimal')
+            self.bis_b.clear()
+            return
+        if not self.vaidar_numero(input_tol):
+            print('Debe ser un numero decimal')
+            self.bis_tol.clear()
+            return
+        self.biseccion(input_fx, input_a, input_b, input_tol)
+
+    def biseccion(self, fun_fx, a, b, tol):
+        print('biseccion')
+        x = sp.symbols('x')
+        f = fun_fx
+        f = sp.lambdify(x, f)
+        a = float(a)
+        b = float(b)
+        tol = float(tol)
+        xi = a
+        xr = b
+        i = 0
+        error = 1
+        datos = []
+        if f(a) * f(b) > 0:
+            print('La funcion no cambia de signo')
+        while error > tol:
+            xi = xr
+            xr = (a + b) / 2
+            # Error
+            if i == 0:
+                error = 1
+            else:
+                error = abs((xr - xi) / xr)
+            # Almacenar
+            datos.append((i, round(xr, 5), round(a, 5), round(b, 5), round(f(a), 5), round(f(xr), 5), round(error, 5)))
+            if f(a) * f(xr) < 0:
+                b = xr
+            if f(xr) * f(b) < 0:
+                a = xr
+            i += 1
+        result = round(xr, 5)
+        self.bis_solucion.setText(f'Solucion: {str(result)}')
+        # Mostrar tabla
+        # Mostrar grafica
 
     def newton_Panel(self):
         print('newton')
         self.stackedWidget.setCurrentIndex(2)
+        self.new_cal.clicked.connect(self.validar_newton)
 
+    def validar_newton(self):
+        input_fx = self.new_fx.text()
+        input_dgx = self.new_dgx.text()
+        input_xo = self.new_xo.text()
+        input_tol = self.new_tol.text()
+        # Validar campos no vacíos
+        if not self.validar_campos_no_vacios(self.new_fx, self.new_dgx, self.new_xo, self.new_tol):
+            print("Algunos campos están vacíos.")
+            return
+
+        # Validar funciones
+        # fx
+        if not self.validar_funcion(input_fx):
+            print('fx no es funncion')
+            self.new_fx.clear()
+            return
+        # dgx
+        if not self.validar_funcion(input_dgx):
+            print('gx no es funncion')
+            self.new_dgx.clear()
+            return
+        # validar numeros
+        if not self.vaidar_numero(input_xo):
+            print('Debe ser un numero decimal')
+            self.new_xo.clear()
+            return
+        if not self.vaidar_numero(input_tol):
+            print('Debe ser un numero decimal')
+            self.new_tol.clear()
+            return
+        print("Todos los campos están completos y las funciones son válidas.")
+        self.newton(input_fx, input_dgx, input_xo, input_tol)
+
+    def newton(self, input_fx, input_dgx, input_xo, input_tol):
+        print('bienvenido')
+        x = sp.symbols('x')
+        f = input_fx
+        dg = input_dgx
+        df = sp.diff(f, x)
+        f = sp.lambdify(x, f, 'numpy')
+        df = sp.lambdify(x, df, 'numpy')
+        dg = sp.lambdify(x, dg, 'numpy')
+        x0 = float(input_xo)
+        tol = float(input_tol)
+        error = 0
+        n = 15
+        datos = []
+        for i in range(1, n + 1):
+            x1 = x0 - f(x0) / df(x0)
+            if i == 1:
+                error = 1
+            else:
+                error = abs((x1 - x0) / x1)
+            datos.append((i, round(x1, 5), round(abs(x1-x0), 5), round(dg(x0), 5), round(error, 5)))
+            result = round(x1, 5)
+            if abs(x1 - x0) < tol:
+                self.new_result.setText(f'Solucion: {str(result)}')
+                # Imprimir los datos como una tabla
+                headers = ["Iteración", "X", "G(X)", "F(X)", "Error"]
+                print(tabulate(datos, headers=headers, tablefmt="grid"))
+                return
+            x0 = x1
     # -------------------------LADY-------------------------------
     def secante_Panel(self):
         print('secante')
@@ -175,10 +320,17 @@ class MainWindow(QMainWindow):
 
     # Falta para mostrar la grafica de la funcion
     def mostrar_grafica(self):
-        self.stackedWidget.setCurrentIndex(10)
         print('mostrar grafica')
+        self.stackedWidget.setCurrentIndex(10)
+        min = -5
+        max = 5
+        eje_x = [x / 10 for x in range(10 * min, 10 * max + 1)]
+        eje_y = [self.f(x) for x in eje_x]
+        print(eje_x)
+        print(eje_y)
+        plt.plot(eje_x, eje_y)
+        plt.show()
 
-    # Falta para mostrar la tabla con i,x,error
     def mostrar_tabla(self):
         #self.stackedWidget.setCurrentIndex(11)
         print('mostrar tabla')
