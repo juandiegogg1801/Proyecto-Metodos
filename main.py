@@ -2,15 +2,16 @@ import sys
 
 import sympy
 from PyQt5 import uic
-from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox
+from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QTableWidgetItem
 import sympy as sp
 import validators
-
+from tabulate import tabulate
 
 class MainWindow(QMainWindow):
 
     def __init__(self):
         super().__init__()
+        self.datos = []
         uic.loadUi("GUI_calculadora.ui", self)
         # Paneles Metodos
         self.puntofijoButton.clicked.connect(self.puntoFijo_Panel)
@@ -39,8 +40,7 @@ class MainWindow(QMainWindow):
         try:
             x = sp.symbols('x')
             expr = sp.sympify(entrada)
-            if isinstance(expr, sp.FunctionClass) or isinstance(expr,
-                                                                sp.Basic):  # Verifica si es una función o una expresión básica
+            if isinstance(expr, sp.FunctionClass) or isinstance(expr, sp.Basic):
                 return True
             else:
                 return False
@@ -96,30 +96,39 @@ class MainWindow(QMainWindow):
 
         # Si todos los campos están completos y las funciones son válidas
         print("Todos los campos están completos y las funciones son válidas.")
-        self.puntoFijo(self, input_fx, input_xo, input_tol)
+        self.puntoFijo(input_fx, input_gx, input_xo, input_tol)
 
     def puntoFijo(self, fun_fx, fun_gx, Xo, tol):
         x = sp.symbols('x')
+        f = fun_fx
+        f = sp.lambdify(x, f)
         g = fun_gx
         g = sp.lambdify(x, g)
         x0 = float(Xo)
         tol = float(tol)
         n = 15  # numero de iteraciones
-        for i in range(n):
-            x = g(x0)
-            error = abs((x - x0) / x)
+        for i in range(1, n + 1):
+            x1 = g(x0)
+            if i == 1:
+                error = 1
+            else:
+                error = abs((x1 - x0) / x1)
             if error < tol:
-                result = round(x, 5)
+                self.datos.append((round(x0, 5), round(g(x0), 5), round(f(x0), 5), round(error, 5)))
+                result = round(x1, 5)
                 # Mostrar resultado
                 self.result_Label.setText(f'Solucion: {str(result)}')
                 break
-            x0 = x
+            self.datos.append((round(x0, 5), round(g(x0), 5), round(f(x0), 5), round(error, 5)))
+            x0 = x1
+
+        # Mostrar tabla
+        self.mostrar_tabla()
+        self.show()
+        #self.tab_button.clicked.connect(self.mostrar_tabla)
 
         # Mostrar grafica
         self.graf_button.clicked.connect(self.mostrar_grafica)
-
-        # Mostrar tabla
-        self.tab_button.clicked.connect(self.mostrar_tabla)
 
     def biseccion_Panel(self):
         print('biseccion')
@@ -171,8 +180,21 @@ class MainWindow(QMainWindow):
 
     # Falta para mostrar la tabla con i,x,error
     def mostrar_tabla(self):
-        self.stackedWidget.setCurrentIndex(11)
+        #self.stackedWidget.setCurrentIndex(11)
         print('mostrar tabla')
+        datos_str = [[str(elemento) for elemento in registro] for registro in self.datos]
+        # Imprimir los datos como una tabla
+        #headers = ["Iteración", "X", "G(X)", "F(X)", "Error"]
+        #print(tabulate(datos_str, headers=headers, tablefmt="grid"))
+        fila = 0
+        for registro in datos_str:
+            columna = 0
+            self.table_puntoFijo.insertRow(fila)
+            for elemento in registro:
+                celda = QTableWidgetItem(elemento)
+                self.table_puntoFijo.setItem(fila, columna, celda)
+                columna += 1
+            fila += 1
 
 
 if __name__ == '__main__':
