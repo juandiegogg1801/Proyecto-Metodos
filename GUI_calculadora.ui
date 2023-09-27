@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>566</width>
-    <height>412</height>
+    <width>586</width>
+    <height>582</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -38,26 +38,8 @@
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <layout class="QFormLayout" name="formLayout">
-       <property name="horizontalSpacing">
-        <number>0</number>
-       </property>
-       <property name="verticalSpacing">
-        <number>0</number>
-       </property>
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
-        <number>0</number>
-       </property>
-       <item row="0" column="0">
+      <layout class="QHBoxLayout" name="horizontalLayout" stretch="2,6">
+       <item>
         <widget class="QFrame" name="frame_2">
          <property name="minimumSize">
           <size>
@@ -210,7 +192,7 @@
          </layout>
         </widget>
        </item>
-       <item row="0" column="1">
+       <item>
         <widget class="QFrame" name="frame_3">
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
@@ -236,36 +218,50 @@
           </property>
           <item>
            <widget class="QStackedWidget" name="stackedWidget">
+            <property name="autoFillBackground">
+             <bool>false</bool>
+            </property>
             <property name="currentIndex">
-             <number>2</number>
+             <number>6</number>
             </property>
             <widget class="QWidget" name="page_punto_fijo">
-             <layout class="QVBoxLayout" name="verticalLayout_6">
-              <property name="spacing">
-               <number>5</number>
-              </property>
-              <property name="leftMargin">
-               <number>1</number>
-              </property>
-              <property name="topMargin">
-               <number>1</number>
-              </property>
-              <property name="rightMargin">
-               <number>1</number>
-              </property>
-              <property name="bottomMargin">
-               <number>1</number>
-              </property>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout">
-                <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_8">
+             <layout class="QGridLayout" name="gridLayout">
+              <item row="1" column="0">
+               <layout class="QGridLayout" name="gridLayout_2">
+                <item row="1" column="0">
+                 <layout class="QVBoxLayout" name="verticalLayout_5">
                   <item>
                    <layout class="QGridLayout" name="gridLayout_3">
-                    <item row="0" column="1">
-                     <widget class="QLineEdit" name="fx_lineEdit"/>
+                    <item row="1" column="3">
+                     <widget class="QPushButton" name="funcionButton">
+                      <property name="minimumSize">
+                       <size>
+                        <width>30</width>
+                        <height>30</height>
+                       </size>
+                      </property>
+                      <property name="maximumSize">
+                       <size>
+                        <width>66</width>
+                        <height>35</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="icon">
+                       <iconset>
+                        <normaloff>../../../../../Downloads/calculadora.png</normaloff>../../../../../Downloads/calculadora.png</iconset>
+                      </property>
+                      <property name="iconSize">
+                       <size>
+                        <width>28</width>
+                        <height>28</height>
+                       </size>
+                      </property>
+                     </widget>
                     </item>
-                    <item row="0" column="0">
+                    <item row="1" column="0">
                      <widget class="QLabel" name="label_2">
                       <property name="font">
                        <font>
@@ -277,31 +273,8 @@
                       </property>
                      </widget>
                     </item>
-                    <item row="0" column="2">
-                     <widget class="QPushButton" name="funcionButton">
-                      <property name="minimumSize">
-                       <size>
-                        <width>30</width>
-                        <height>30</height>
-                       </size>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="icon">
-                       <iconset>
-                        <normaloff>calculadora.png</normaloff>calculadora.png</iconset>
-                      </property>
-                      <property name="iconSize">
-                       <size>
-                        <width>28</width>
-                        <height>28</height>
-                       </size>
-                      </property>
-                      <property name="autoRepeatInterval">
-                       <number>100</number>
-                      </property>
-                     </widget>
+                    <item row="1" column="2">
+                     <widget class="QLineEdit" name="fx_lineEdit"/>
                     </item>
                    </layout>
                   </item>
@@ -309,7 +282,7 @@
                 </item>
                </layout>
               </item>
-              <item>
+              <item row="2" column="0">
                <layout class="QHBoxLayout" name="horizontalLayout_3">
                 <item>
                  <widget class="QLabel" name="label_4">
@@ -339,7 +312,7 @@
                   </property>
                   <property name="icon">
                    <iconset>
-                    <normaloff>calculadora.png</normaloff>calculadora.png</iconset>
+                    <normaloff>../../../../../Downloads/calculadora.png</normaloff>../../../../../Downloads/calculadora.png</iconset>
                   </property>
                   <property name="iconSize">
                    <size>
@@ -351,41 +324,35 @@
                 </item>
                </layout>
               </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <item row="6" column="0">
+               <layout class="QHBoxLayout" name="horizontalLayout_7">
                 <item>
-                 <widget class="QLabel" name="label_5">
-                  <property name="font">
-                   <font>
-                    <pointsize>12</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Xo</string>
-                  </property>
+                 <widget class="QTableWidget" name="table_puntoFijo">
+                  <column>
+                   <property name="text">
+                    <string>Xi</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>g(xi)</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>f(xi)</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>Error</string>
+                   </property>
+                  </column>
                  </widget>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="xo_lineEdit"/>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_6">
-                  <property name="font">
-                   <font>
-                    <pointsize>12</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Tolerancia</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="tol_lineEdit"/>
                 </item>
                </layout>
               </item>
-              <item>
+              <item row="4" column="0">
                <layout class="QHBoxLayout" name="horizontalLayout_5">
                 <item>
                  <widget class="QPushButton" name="calcularButton">
@@ -407,7 +374,7 @@
                 </item>
                </layout>
               </item>
-              <item>
+              <item row="5" column="0">
                <layout class="QHBoxLayout" name="horizontalLayout_6">
                 <property name="spacing">
                  <number>4</number>
@@ -441,181 +408,25 @@
                 </item>
                </layout>
               </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_7">
+              <item row="3" column="0">
+               <layout class="QHBoxLayout" name="horizontalLayout_4">
                 <item>
-                 <widget class="QPushButton" name="graf_button">
-                  <property name="maximumSize">
-                   <size>
-                    <width>160</width>
-                    <height>30</height>
-                   </size>
-                  </property>
+                 <widget class="QLabel" name="label_5">
                   <property name="font">
                    <font>
                     <pointsize>12</pointsize>
                    </font>
                   </property>
                   <property name="text">
-                   <string>Ver Gráfica</string>
+                   <string>Xo</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="borrar_button">
-                  <property name="font">
-                   <font>
-                    <pointsize>13</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Borrar</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <widget class="QTableWidget" name="table_puntoFijo">
-                <column>
-                 <property name="text">
-                  <string>Xi</string>
-                 </property>
-                </column>
-                <column>
-                 <property name="text">
-                  <string>g(Xi)</string>
-                 </property>
-                </column>
-                <column>
-                 <property name="text">
-                  <string>f(Xi)</string>
-                 </property>
-                </column>
-                <column>
-                 <property name="text">
-                  <string>Error</string>
-                 </property>
-                </column>
-               </widget>
-              </item>
-              <item>
-               <widget class="QFrame" name="tabla_frame">
-                <property name="maximumSize">
-                 <size>
-                  <width>300</width>
-                  <height>300</height>
-                 </size>
-                </property>
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <layout class="QHBoxLayout" name="horizontalLayout_2">
-                 <property name="spacing">
-                  <number>0</number>
-                 </property>
-                 <property name="leftMargin">
-                  <number>1</number>
-                 </property>
-                 <property name="topMargin">
-                  <number>1</number>
-                 </property>
-                 <property name="rightMargin">
-                  <number>1</number>
-                 </property>
-                 <property name="bottomMargin">
-                  <number>1</number>
-                 </property>
-                </layout>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-            <widget class="QWidget" name="page_biseccion">
-             <layout class="QVBoxLayout" name="verticalLayout_7">
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_9">
-                <item>
-                 <widget class="QLabel" name="label_3">
-                  <property name="font">
-                   <font>
-                    <pointsize>12</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>f(x):</string>
-                  </property>
-                 </widget>
+                 <widget class="QLineEdit" name="xo_lineEdit"/>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="bis_fx"/>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="funcionButton3">
-                  <property name="font">
-                   <font>
-                    <pointsize>8</pointsize>
-                   </font>
-                  </property>
-                  <property name="icon">
-                   <iconset>
-                    <normaloff>calculadora.png</normaloff>calculadora.png</iconset>
-                  </property>
-                  <property name="iconSize">
-                   <size>
-                    <width>20</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_10">
-                <item>
-                 <widget class="QLabel" name="label_7">
-                  <property name="font">
-                   <font>
-                    <pointsize>12</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>a:</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="bis_a"/>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_18">
-                <item>
-                 <widget class="QLabel" name="label_10">
-                  <property name="font">
-                   <font>
-                    <pointsize>12</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>b:</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="bis_b"/>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_17">
-                <item>
-                 <widget class="QLabel" name="label_11">
+                 <widget class="QLabel" name="label_6">
                   <property name="font">
                    <font>
                     <pointsize>12</pointsize>
@@ -627,208 +438,1638 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="bis_tol"/>
+                 <widget class="QLineEdit" name="tol_lineEdit"/>
                 </item>
                </layout>
               </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_15">
-                <item>
-                 <widget class="QPushButton" name="bis_calcular">
-                  <property name="font">
-                   <font>
-                    <pointsize>12</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Calcular</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_14">
-                <item>
-                 <widget class="QLabel" name="bis_solucion">
-                  <property name="font">
-                   <font>
-                    <pointsize>12</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Solucion:</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_19">
-                <item>
-                 <widget class="QPushButton" name="bis_grafica">
-                  <property name="font">
-                   <font>
-                    <pointsize>12</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Ver grafica</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="bis_borrar">
-                  <property name="font">
-                   <font>
-                    <pointsize>12</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Borrar</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <widget class="QTableView" name="bis_tabla">
-                <property name="maximumSize">
-                 <size>
-                  <width>300</width>
-                  <height>200</height>
-                 </size>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_33">
+                <property name="font">
+                 <font>
+                  <pointsize>14</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>                 PUNTO FIJO</string>
                 </property>
                </widget>
               </item>
              </layout>
+            </widget>
+            <widget class="QWidget" name="page_biseccion">
+             <widget class="QLabel" name="label_34">
+              <property name="geometry">
+               <rect>
+                <x>50</x>
+                <y>10</y>
+                <width>366</width>
+                <height>23</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>              BISECCIÓN</string>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="bis_fx">
+              <property name="geometry">
+               <rect>
+                <x>47</x>
+                <y>57</y>
+                <width>277</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="funcionButton_4">
+              <property name="geometry">
+               <rect>
+                <x>330</x>
+                <y>50</y>
+                <width>40</width>
+                <height>35</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>30</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>66</width>
+                <height>35</height>
+               </size>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>../../../../../Downloads/calculadora.png</normaloff>../../../../../Downloads/calculadora.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>28</width>
+                <height>28</height>
+               </size>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_3">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>50</y>
+                <width>31</width>
+                <height>35</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>f(x):</string>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="bis_a">
+              <property name="geometry">
+               <rect>
+                <x>50</x>
+                <y>90</y>
+                <width>277</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_35">
+              <property name="geometry">
+               <rect>
+                <x>13</x>
+                <y>83</y>
+                <width>31</width>
+                <height>35</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>a:</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_36">
+              <property name="geometry">
+               <rect>
+                <x>13</x>
+                <y>113</y>
+                <width>31</width>
+                <height>35</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>b:</string>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="bis_b">
+              <property name="geometry">
+               <rect>
+                <x>50</x>
+                <y>120</y>
+                <width>277</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_37">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>140</y>
+                <width>81</width>
+                <height>35</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Tolerancia</string>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="bis_tol">
+              <property name="geometry">
+               <rect>
+                <x>90</x>
+                <y>150</y>
+                <width>231</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QTableWidget" name="bis_tabla">
+              <property name="geometry">
+               <rect>
+                <x>11</x>
+                <y>267</y>
+                <width>361</width>
+                <height>291</height>
+               </rect>
+              </property>
+              <column>
+               <property name="text">
+                <string>Xi</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>g(xi)</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>f(xi)</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Error</string>
+               </property>
+              </column>
+             </widget>
+             <widget class="QPushButton" name="bis_calcular">
+              <property name="geometry">
+               <rect>
+                <x>100</x>
+                <y>230</y>
+                <width>160</width>
+                <height>27</height>
+               </rect>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>160</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Calcular</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="bis_solucion">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>190</y>
+                <width>300</width>
+                <height>19</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>300</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Solucion:</string>
+              </property>
+             </widget>
             </widget>
             <widget class="QWidget" name="page_newton">
-             <layout class="QVBoxLayout" name="verticalLayout_13">
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_11">
-                <item>
-                 <widget class="QLabel" name="label_12">
-                  <property name="text">
-                   <string>fx:</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="new_fx"/>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="pushButton_4">
-                  <property name="text">
-                   <string/>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_12">
-                <item>
-                 <widget class="QLabel" name="label_13">
-                  <property name="text">
-                   <string>dgx</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="new_dgx"/>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="pushButton_5">
-                  <property name="text">
-                   <string/>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_13">
-                <item>
-                 <widget class="QLabel" name="label_14">
-                  <property name="text">
-                   <string>Xo</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="new_xo"/>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_15">
-                  <property name="text">
-                   <string>Tol</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="new_tol"/>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_16">
-                <item>
-                 <widget class="QPushButton" name="new_cal">
-                  <property name="text">
-                   <string>Calcular</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_20">
-                <item>
-                 <widget class="QLabel" name="new_result">
-                  <property name="text">
-                   <string>Solucion:</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_21">
-                <item>
-                 <widget class="QPushButton" name="new_graf">
-                  <property name="text">
-                   <string>Ver grafica</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="new_bor">
-                  <property name="text">
-                   <string>Borrar</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <widget class="QTableView" name="new_table">
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>200</height>
-                 </size>
-                </property>
-               </widget>
-              </item>
-             </layout>
+             <widget class="QLabel" name="label_14">
+              <property name="geometry">
+               <rect>
+                <x>110</x>
+                <y>20</y>
+                <width>161</width>
+                <height>41</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;NEWTON-RAPHSON&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_15">
+              <property name="geometry">
+               <rect>
+                <x>16</x>
+                <y>230</y>
+                <width>18</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Xo</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_38">
+              <property name="geometry">
+               <rect>
+                <x>173</x>
+                <y>230</y>
+                <width>73</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Tolerancia</string>
+              </property>
+             </widget>
+             <widget class="QTableWidget" name="new_table">
+              <property name="geometry">
+               <rect>
+                <x>16</x>
+                <y>230</y>
+                <width>364</width>
+                <height>328</height>
+               </rect>
+              </property>
+              <column>
+               <property name="text">
+                <string>Xi</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>g(xi)</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>f(xi)</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Error</string>
+               </property>
+              </column>
+             </widget>
+             <widget class="QLineEdit" name="new_xo">
+              <property name="geometry">
+               <rect>
+                <x>60</x>
+                <y>120</y>
+                <width>121</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="new_dgx">
+              <property name="geometry">
+               <rect>
+                <x>60</x>
+                <y>80</y>
+                <width>271</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="funcionButton_3">
+              <property name="geometry">
+               <rect>
+                <x>340</x>
+                <y>80</y>
+                <width>40</width>
+                <height>35</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>30</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>66</width>
+                <height>35</height>
+               </size>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>../../../../../Downloads/calculadora.png</normaloff>../../../../../Downloads/calculadora.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>28</width>
+                <height>28</height>
+               </size>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_39">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>70</y>
+                <width>41</width>
+                <height>36</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>dg(x):</string>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="new_tol">
+              <property name="geometry">
+               <rect>
+                <x>240</x>
+                <y>120</y>
+                <width>128</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_40">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>40</y>
+                <width>31</width>
+                <height>35</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>f(x):</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="new_cal">
+              <property name="geometry">
+               <rect>
+                <x>110</x>
+                <y>160</y>
+                <width>160</width>
+                <height>27</height>
+               </rect>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>160</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Calcular</string>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="new_fx">
+              <property name="geometry">
+               <rect>
+                <x>61</x>
+                <y>48</y>
+                <width>277</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QLabel" name="new_result">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>190</y>
+                <width>300</width>
+                <height>19</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>300</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Solucion:</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="funcionButton2_2">
+              <property name="geometry">
+               <rect>
+                <x>340</x>
+                <y>40</y>
+                <width>40</width>
+                <height>36</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>30</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>../../../../../Downloads/calculadora.png</normaloff>../../../../../Downloads/calculadora.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>28</width>
+                <height>28</height>
+               </size>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_81">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>110</y>
+                <width>41</width>
+                <height>36</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>X0</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_82">
+              <property name="geometry">
+               <rect>
+                <x>190</x>
+                <y>110</y>
+                <width>41</width>
+                <height>36</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Tol</string>
+              </property>
+             </widget>
             </widget>
-            <widget class="QWidget" name="page_secante"/>
-            <widget class="QWidget" name="page_diferencias"/>
-            <widget class="QWidget" name="page_jacobi"/>
-            <widget class="QWidget" name="page_gauss"/>
-            <widget class="QWidget" name="page_trapecio"/>
-            <widget class="QWidget" name="page_simpson"/>
+            <widget class="QWidget" name="page_secante">
+             <widget class="QLabel" name="label_7">
+              <property name="geometry">
+               <rect>
+                <x>49</x>
+                <y>40</y>
+                <width>31</width>
+                <height>35</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>f(x):</string>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="fx_lineEdit_2">
+              <property name="geometry">
+               <rect>
+                <x>86</x>
+                <y>47</y>
+                <width>148</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="funcionButton_2">
+              <property name="geometry">
+               <rect>
+                <x>240</x>
+                <y>40</y>
+                <width>40</width>
+                <height>35</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>30</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>66</width>
+                <height>35</height>
+               </size>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>../../../../../Downloads/calculadora.png</normaloff>../../../../../Downloads/calculadora.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>28</width>
+                <height>28</height>
+               </size>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_10">
+              <property name="geometry">
+               <rect>
+                <x>130</x>
+                <y>20</y>
+                <width>61</width>
+                <height>16</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;SECANTE&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_11">
+              <property name="geometry">
+               <rect>
+                <x>90</x>
+                <y>120</y>
+                <width>73</width>
+                <height>43</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Tolerancia</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_12">
+              <property name="geometry">
+               <rect>
+                <x>87</x>
+                <y>80</y>
+                <width>18</width>
+                <height>43</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Xo</string>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="xo_lineEdit_2">
+              <property name="geometry">
+               <rect>
+                <x>111</x>
+                <y>91</y>
+                <width>63</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="tol_lineEdit_2">
+              <property name="geometry">
+               <rect>
+                <x>180</x>
+                <y>130</y>
+                <width>63</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_13">
+              <property name="geometry">
+               <rect>
+                <x>206</x>
+                <y>79</y>
+                <width>18</width>
+                <height>43</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>X1</string>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="xo_lineEdit_3">
+              <property name="geometry">
+               <rect>
+                <x>230</x>
+                <y>90</y>
+                <width>63</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QLabel" name="result_Label_2">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>210</y>
+                <width>235</width>
+                <height>40</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>300</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>La raiz es:</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="calcularButton_2">
+              <property name="geometry">
+               <rect>
+                <x>100</x>
+                <y>170</y>
+                <width>160</width>
+                <height>30</height>
+               </rect>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>160</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Calcular</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="graf_button_2">
+              <property name="geometry">
+               <rect>
+                <x>120</x>
+                <y>510</y>
+                <width>160</width>
+                <height>30</height>
+               </rect>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>160</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Ver Gráfica</string>
+              </property>
+             </widget>
+             <widget class="QTableWidget" name="tableWidget">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>250</y>
+                <width>341</width>
+                <height>241</height>
+               </rect>
+              </property>
+             </widget>
+            </widget>
+            <widget class="QWidget" name="page_diferencias">
+             <widget class="QLabel" name="label_21">
+              <property name="geometry">
+               <rect>
+                <x>30</x>
+                <y>80</y>
+                <width>221</width>
+                <height>35</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Ingrese el número de puntos</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="polinomio_label">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>200</y>
+                <width>381</width>
+                <height>71</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>8</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>                                                                                        </string>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="fx_lineEdit_5">
+              <property name="geometry">
+               <rect>
+                <x>260</x>
+                <y>90</y>
+                <width>81</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_22">
+              <property name="geometry">
+               <rect>
+                <x>100</x>
+                <y>30</y>
+                <width>191</width>
+                <height>20</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;DIFERENCIAS DIVIDIDAS&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="calcularButton_4">
+              <property name="geometry">
+               <rect>
+                <x>70</x>
+                <y>140</y>
+                <width>160</width>
+                <height>30</height>
+               </rect>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>160</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Calcular</string>
+              </property>
+             </widget>
+             <widget class="QTableWidget" name="table">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>300</y>
+                <width>351</width>
+                <height>251</height>
+               </rect>
+              </property>
+             </widget>
+            </widget>
+            <widget class="QWidget" name="page_jacobi">
+             <widget class="QLabel" name="result_Label_3">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>200</y>
+                <width>300</width>
+                <height>40</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>300</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Solución:</string>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="fx_lineEdit_3">
+              <property name="geometry">
+               <rect>
+                <x>60</x>
+                <y>60</y>
+                <width>81</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="calcularButton_3">
+              <property name="geometry">
+               <rect>
+                <x>50</x>
+                <y>140</y>
+                <width>160</width>
+                <height>30</height>
+               </rect>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>160</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Calcular</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_16">
+              <property name="geometry">
+               <rect>
+                <x>150</x>
+                <y>25</y>
+                <width>81</width>
+                <height>21</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;JACOBI&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_17">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>90</y>
+                <width>73</width>
+                <height>43</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Tolerancia</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_18">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>50</y>
+                <width>31</width>
+                <height>35</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Filas</string>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="tol_lineEdit_3">
+              <property name="geometry">
+               <rect>
+                <x>90</x>
+                <y>100</y>
+                <width>63</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="fx_lineEdit_4">
+              <property name="geometry">
+               <rect>
+                <x>260</x>
+                <y>60</y>
+                <width>81</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_19">
+              <property name="geometry">
+               <rect>
+                <x>180</x>
+                <y>50</y>
+                <width>71</width>
+                <height>35</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Columnas</string>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="tol_lineEdit_4">
+              <property name="geometry">
+               <rect>
+                <x>320</x>
+                <y>100</y>
+                <width>63</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_20">
+              <property name="geometry">
+               <rect>
+                <x>170</x>
+                <y>90</y>
+                <width>161</width>
+                <height>43</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Iteraciones Maximas</string>
+              </property>
+             </widget>
+             <widget class="QTableWidget" name="tableWidget_2">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>250</y>
+                <width>371</width>
+                <height>281</height>
+               </rect>
+              </property>
+             </widget>
+            </widget>
+            <widget class="QWidget" name="page_gauss">
+             <widget class="QLabel" name="label_83">
+              <property name="geometry">
+               <rect>
+                <x>130</x>
+                <y>20</y>
+                <width>151</width>
+                <height>21</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;GAUSS-SEIDEL&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_84">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>60</y>
+                <width>391</width>
+                <height>21</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Ingrese las filas de la matriz A (una fila por vez, separando elementos por comas):</string>
+              </property>
+             </widget>
+             <widget class="QTextEdit" name="textEdit_GS">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>90</y>
+                <width>361</width>
+                <height>121</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_85">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>240</y>
+                <width>321</width>
+                <height>16</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Ingrese el vector b (separando elementos por comas):</string>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="lineEditGS">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>270</y>
+                <width>281</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_86">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>300</y>
+                <width>321</width>
+                <height>16</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Ingrese el vector inicial (separando elementos por comas):</string>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="lineEdit_2GS">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>320</y>
+                <width>281</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="ButtonGS">
+              <property name="geometry">
+               <rect>
+                <x>110</x>
+                <y>360</y>
+                <width>160</width>
+                <height>30</height>
+               </rect>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>160</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Calcular</string>
+              </property>
+             </widget>
+             <widget class="QTableWidget" name="tableWidget_GS">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>410</y>
+                <width>351</width>
+                <height>141</height>
+               </rect>
+              </property>
+              <column>
+               <property name="text">
+                <string>Iteración</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Vector</string>
+               </property>
+              </column>
+             </widget>
+            </widget>
+            <widget class="QWidget" name="page_trapecio">
+             <widget class="QLabel" name="label_23">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>40</y>
+                <width>181</width>
+                <height>35</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Ingresa la funciónn f(x)</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_24">
+              <property name="geometry">
+               <rect>
+                <x>150</x>
+                <y>10</y>
+                <width>131</width>
+                <height>21</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;TRAPECIO&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="fxT_lineEdit_2">
+              <property name="geometry">
+               <rect>
+                <x>200</x>
+                <y>50</y>
+                <width>151</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="aT_lineEdit">
+              <property name="geometry">
+               <rect>
+                <x>200</x>
+                <y>80</y>
+                <width>151</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_25">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>70</y>
+                <width>181</width>
+                <height>35</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Ingresa el valor de a</string>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="bT_lineEdit">
+              <property name="geometry">
+               <rect>
+                <x>200</x>
+                <y>120</y>
+                <width>151</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_26">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>110</y>
+                <width>181</width>
+                <height>35</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Ingresa el valor de b</string>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="nT_lineEdit">
+              <property name="geometry">
+               <rect>
+                <x>200</x>
+                <y>160</y>
+                <width>151</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_27">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>150</y>
+                <width>181</width>
+                <height>35</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Ingresa el valor de n:</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="calcularButton_T">
+              <property name="geometry">
+               <rect>
+                <x>110</x>
+                <y>200</y>
+                <width>160</width>
+                <height>30</height>
+               </rect>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>160</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Calcular</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_5T">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>230</y>
+                <width>300</width>
+                <height>40</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>300</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Solución:</string>
+              </property>
+             </widget>
+             <widget class="QTableWidget" name="tableWidget_T">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>270</y>
+                <width>391</width>
+                <height>281</height>
+               </rect>
+              </property>
+             </widget>
+            </widget>
+            <widget class="QWidget" name="page_simpson">
+             <widget class="QLineEdit" name="fxS_lineEdit">
+              <property name="geometry">
+               <rect>
+                <x>200</x>
+                <y>50</y>
+                <width>151</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="calcularButtonS">
+              <property name="geometry">
+               <rect>
+                <x>110</x>
+                <y>200</y>
+                <width>160</width>
+                <height>30</height>
+               </rect>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>160</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Calcular</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_5S">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>230</y>
+                <width>300</width>
+                <height>40</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>300</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Solución:</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_28">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>150</y>
+                <width>181</width>
+                <height>35</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Ingresa el valor de n:</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_29">
+              <property name="geometry">
+               <rect>
+                <x>150</x>
+                <y>10</y>
+                <width>131</width>
+                <height>21</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;SIMPSON&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="a2_lineEdit">
+              <property name="geometry">
+               <rect>
+                <x>200</x>
+                <y>80</y>
+                <width>151</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="b2_lineEdit">
+              <property name="geometry">
+               <rect>
+                <x>200</x>
+                <y>120</y>
+                <width>151</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_30">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>110</y>
+                <width>181</width>
+                <height>35</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Ingresa el valor de b</string>
+              </property>
+             </widget>
+             <widget class="QLineEdit" name="n2_lineEdit">
+              <property name="geometry">
+               <rect>
+                <x>200</x>
+                <y>160</y>
+                <width>151</width>
+                <height>20</height>
+               </rect>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_31">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>40</y>
+                <width>181</width>
+                <height>35</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Ingresa la funciónn f(x)</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_32">
+              <property name="geometry">
+               <rect>
+                <x>10</x>
+                <y>70</y>
+                <width>181</width>
+                <height>35</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Ingresa el valor de a</string>
+              </property>
+             </widget>
+             <widget class="QTableWidget" name="tableWidget_S">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>270</y>
+                <width>391</width>
+                <height>281</height>
+               </rect>
+              </property>
+             </widget>
+            </widget>
             <widget class="QWidget" name="page_calculadora">
              <layout class="QVBoxLayout" name="verticalLayout_4">
               <item>
@@ -1023,7 +2264,7 @@
                   </property>
                   <property name="icon">
                    <iconset>
-                    <normaloff>aceptar.png</normaloff>aceptar.png</iconset>
+                    <normaloff>../../../../../Downloads/aceptar.png</normaloff>../../../../../Downloads/aceptar.png</iconset>
                   </property>
                  </widget>
                 </item>
@@ -1052,30 +2293,19 @@
              </layout>
             </widget>
             <widget class="QWidget" name="page_grafica">
-             <layout class="QVBoxLayout" name="verticalLayout_5">
-              <item>
-               <widget class="QLabel" name="label_8">
-                <property name="font">
-                 <font>
-                  <pointsize>20</pointsize>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>Grafica:</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="grafica">
-                <item>
-                 <widget class="QGraphicsView" name="graphicsView"/>
-                </item>
-               </layout>
-              </item>
-             </layout>
+             <widget class="QLabel" name="label_8">
+              <property name="geometry">
+               <rect>
+                <x>50</x>
+                <y>30</y>
+                <width>35</width>
+                <height>10</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string>Grafica:</string>
+              </property>
+             </widget>
             </widget>
             <widget class="QWidget" name="page_tabla">
              <widget class="QLabel" name="label_9">
